@@ -923,10 +923,10 @@ function LoadRili(objid) {
         rt += '<tr>';
         for (j = 0; j < 7; j++) {
             gNum = i * 7 + j;
-            rt += "<td id='" + objid + "_gd" + gNum + "' onmouseover='mOvr(\"" + objid + "\"," + gNum + ",true)'><div class='rlri' id='" + objid + "_sd" + gNum + "'";
+            rt += "<td id='" + objid + "_gd" + gNum + "' onmouseover='mOvr(\"" + objid + "\"," + gNum + ",true)'><div class='calendar-relative'><a href='javascript:void(0)'><span class='rlri' id='" + objid + "_sd" + gNum + "'";
             if (j == 0) rt += " style='color:red;'";
             else if (j == 6) rt += (i % 2 == 1) ? " style='color:red'" : " style='color:green'";
-            rt += " title=''></div><div id='" + objid + "_ld" + gNum + "' class='rlinfo'></div></td>";
+            rt += " title=''></span><span id='" + objid + "_ld" + gNum + "' class='rlinfo'></span></a></div></td>";
         }
         rt += '</tr>';
     }
