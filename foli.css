@@ -1,0 +1,22 @@
+.rltit{padding:5px;background:#784B20;line-height:22px;height:22px;color:#fff;font-weight:bolder;}
+.rltit .rlgz{padding-left:10px;color:#ff0;}
+.rltit select{height:20px;font-size:12px;margin:0px 5px;}
+.rltit input{height:22px;margin:0px 1px;position:relative;top:-2px;}
+.rltit a:link,.rltit a:active,.rltit a:visited{color:#ffb;text-decoration:none; }.rltit a:hover{ color:#ff0;}
+.rlbdy table{width:100%;background:#fff;margin:0px 2px;}
+.rlbdy th div{text-align:center;font-weight:bolder;margin-right:1px;background:#fca;}
+.rlbdy td{cursor:pointer;text-align:center;}.rlbdy td div{margin-right:1px;}
+.rlbdy .rlri{font-size:36px;line-height:38px;font-family:Arial Black;}
+.rlbdy .fajia {	background:url(fajia.gif) no-repeat left top;}
+.rlbdy .today {	background-color:#e59755;}
+.rlbdy .this {	background-color:#ffccaa;}
+
+
+.rili_fu{position:absolute; display: none; word-break:break-all;width:130px;}
+.rili_fu .rlyang{color:#fff;line-height:20px;text-align:right;padding-right:6px;}
+.rili_fu .rlfujie{background:#d6ffd6;margin:5px;color:#373937;line-height:20px;text-align:left;padding:6px;}
+
+
+.rltext{padding:5px;}
+.rltext strong{color:#f80;}.rltext span{color:green;}
+.rltext .rlri{font-size:90px;line-height:92px;height:100px;font-family:Arial Black;text-align:center;color:#784c1f;}
