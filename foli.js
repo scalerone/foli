@@ -1,4 +1,4 @@
-var RLHANLEN = 9;
+// var RLHANLEN = 9;
 /*****************************************************************************/
 var ttime = 0;
 var tInfo = new Array(
@@ -708,13 +708,13 @@ function drawCld(objid, SY, SM) {
 
             s = cld[sD].lunarFestival;
             if (s.length > 0) { //农历节日
-                if (s.length > RLHANLEN) s = s.substr(0, RLHANLEN - 2) + '...';
+                // if (s.length > RLHANLEN) s = s.substr(0, RLHANLEN - 2) + '...';
                 s = s.fontcolor('red');
             } else { //公历节日
                 s = cld[sD].solarFestival;
                 if (s.length > 0) {
-                    size = (s.charCodeAt(0) > 0 && s.charCodeAt(0) < 128) ? (RLHANLEN * 2) : RLHANLEN;
-                    if (s.length > size + 2) s = s.substr(0, size) + '...';
+                    // size = (s.charCodeAt(0) > 0 && s.charCodeAt(0) < 128) ? (RLHANLEN * 2) : RLHANLEN;
+                    // if (s.length > size + 2) s = s.substr(0, size) + '...';
                     s = (s == '黑色星期五') ? s.fontcolor('black') : s.fontcolor('blue');
                 } else { //廿四节气
                     s = cld[sD].solarTerms;

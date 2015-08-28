@@ -8,6 +8,8 @@
     <style type="text/css">
     table {
         font-family: arial;
+        width: 100%;
+        table-layout: fixed;
     }
     
     table tbody td {
@@ -21,20 +23,21 @@
     }
     
     .calendar-relative>a {
-        background: #fff0f0;
         display: block;
-        border-right: 1px solid #fff;
         height: 55px;
         padding: 11px 3px 10px;
         text-align: center;
         text-decoration: none;
         line-height: 1;
-        white-space: nowrap;
-        overflow: hidden;
     }
     
     .calendar-relative>a span {
         display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: keep-all;
+        word-wrap: break-word;
     }
     
     .calendar-relative>a:hover {
@@ -61,7 +64,7 @@
 <body>
     <div id="rili">
         <div id="rili_tit" class="rltit"></div>
-        <div id="rili_bdy" class="rlbdy" style="float:left;width:785px;"></div>
+        <div id="rili_bdy" class="rlbdy" style="float:left;width:400px;"></div>
         <div id="rili_show" style="float:right;width:190px;height:370px"></div>
     </div>
     <script type="text/javascript" src="jquery.min.js"></script>
