@@ -781,6 +781,22 @@ function drawCld(objid, SY, SM) {
     $RL(objid + "_gz").innerHTML = xDisplay + '年 ' + yDisplay + '年 农历' + cyclical(SY - 1900 + 36 - lYrChgInd) + '年【' + Animals[((SY - 4) % 12 - lYrChgInd) != -1 ? ((SY - 4) % 12 - lYrChgInd) : 11] + '年】';
 }
 
+function rili_getcurrentfoli(y, m) {
+    var now = new Date(),
+        SY = y || now.getFullYear(),
+        SM = m || now.getMonth();
+    var i, sD, s, size,
+        cld = new calendar(SY, SM);
+    var xDisplay = '佛历' + (((SY - lYrChgInd + 544) == 1) ? '元' : SY - lYrChgInd + 544); //以陰曆記年
+    if (SY - lYrChgInd > 1874 && SY - lYrChgInd < 1909) yDisplay = '光绪' + (((SY - lYrChgInd - 1874) == 1) ? '元' : SY - lYrChgInd - 1874) //以陰曆記年
+    if (SY - lYrChgInd > 1908 && SY - lYrChgInd < 1912) yDisplay = '宣统' + (((SY - lYrChgInd - 1908) == 1) ? '元' : SY - lYrChgInd - 1908) //以陰曆記年
+    if (SY > 1911 && SY < 1950) yDisplay = '民国' + (((SY - 1911) == 1) ? '元' : SY - 1911); //以陽曆記年
+    if (SY > 1948) yDisplay = '建国' + (((SY - 1948) == 1) ? '元' : SY - 1948); //以陽曆記年
+
+    return xDisplay + '年 ' + yDisplay + '年 农历' + cyclical(SY - 1900 + 36 - lYrChgInd) + '年【' + Animals[((SY - 4) % 12 - lYrChgInd) != -1 ? ((SY - 4) % 12 - lYrChgInd) : 11] + '年】';
+
+
+}
 
 function changeCld(objid) {
     var y, m;
