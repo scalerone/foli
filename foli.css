@@ -1,22 +1,206 @@
-.rltit{padding:5px;background:#784B20;line-height:22px;height:22px;color:#fff;font-weight:bolder;}
-.rltit .rlgz{padding-left:10px;color:#ff0;}
-.rltit select{height:20px;font-size:12px;margin:0px 5px;}
-.rltit input{height:22px;margin:0px 1px;position:relative;top:-2px;}
-.rltit a:link,.rltit a:active,.rltit a:visited{color:#ffb;text-decoration:none; }.rltit a:hover{ color:#ff0;}
-.rlbdy table{width:100%;background:#fff;margin:0px 2px;}
-.rlbdy th div{text-align:center;font-weight:bolder;margin-right:1px;background:#fca;}
-.rlbdy td{cursor:pointer;text-align:center;}.rlbdy td div{margin-right:1px;}
-.rlbdy .rlri{font-size:36px;line-height:38px;font-family:Arial Black;}
-.rlbdy .fajia {	background:url(fajia.gif) no-repeat left top;}
-.rlbdy .today {	background-color:#e59755;}
-.rlbdy .this {	background-color:#ffccaa;}
+.rili {
+    position: relative;
+    /*border: 2px solid #feefc0;*/
+    padding: 0 20px;
+}
 
+.rili .rlbdy {
+    /*float: left;*/
+    width: 745px
+}
 
-.rili_fu{position:absolute; display: none; word-break:break-all;width:130px;}
-.rili_fu .rlyang{color:#fff;line-height:20px;text-align:right;padding-right:6px;}
-.rili_fu .rlfujie{background:#d6ffd6;margin:5px;color:#373937;line-height:20px;text-align:left;padding:6px;}
+.rili.rili-sm .rlbdy {
+    width: auto;
+}
 
+.rili .rlbdy table {
+    font-family: arial;
+    width: 100%;
+    table-layout: fixed;
+}
 
-.rltext{padding:5px;}
-.rltext strong{color:#f80;}.rltext span{color:green;}
-.rltext .rlri{font-size:90px;line-height:92px;height:100px;font-family:Arial Black;text-align:center;color:#784c1f;}
+.rili .rlbdy thead th,
+.rili .rlbdy tbody td {
+    border-top: 1px solid #feefc0;
+    padding: 0;
+}
+
+.rili .rlbdy thead th {
+    height: 30px;
+    line-height: 30px;
+    border-color: #B98628;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.rili .rlbdy .foli-relative {
+    position: relative;
+    width: 100%;
+    zoom: 1;
+}
+
+.rili .rlbdy .foli-relative>.daycontainer {
+    display: block;
+    padding: 8px 0 7px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1;
+    border: 3px solid transparent;
+}
+
+.rili.rili-sm .rlbdy .foli-relative>.daycontainer,
+.rili.rili-sm .rlbdy .foli-relative>.daycontainer:hover,
+.rili.rili-sm .rlbdy .foli-relative>.daycontainer.active {
+    padding: 3px 0 2px;
+}
+
+.rili .rlbdy .foli-relative>.daycontainer:hover,
+.rili .rlbdy .foli-relative>.daycontainer.active {
+    padding: 8px 0 7px;
+    border: 3px solid #fb0;
+}
+
+.rili .rlbdy .foli-relative .rlri {
+    display: block;
+    /*height: 22px;*/
+    font-size: 18px;
+    color: #000;
+    line-height: 1;
+    padding: 5px 0;
+}
+
+.rili.rili-sm .rlbdy .foli-relative>a span.rlri {
+    font-size: 12px;
+    padding: 0;
+}
+
+.rili .rlbdy .foli-relative>a span.rlinfo {
+    display: block;
+    color: #999;
+    font-size: 12px;
+    padding: 15px 0 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: keep-all;
+    word-wrap: break-word;
+    font-size: 12px;
+}
+
+.rili.rili-sm .rlbdy .foli-relative>a span.rlinfo {
+    display: none;
+}
+
+.rili .rlbdy .daycontainer.today {
+    background: #fb0;
+}
+
+.rili .rlshow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 780px;
+    background: #feefc0;
+    text-align: center;
+    color: #B98628;
+}
+
+.rili.rili-sm .rlshow {
+    display: none;
+}
+
+.rili .rlshow .rltext .rlyang {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.rili .rlshow .rltext .rlri {
+    width: 95px;
+    line-height: 95px;
+    height: 95px;
+    background: #fb0;
+    color: #fff;
+    font-size: 65px;
+    border-radius: 3px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.rili .rlshow .rltext div {
+    margin: 10px;
+    text-align: left;
+}
+
+.rili .rltit {
+    width: 745px;
+    line-height: 35px;
+    height: 35px;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.rili.rili-sm .rltit {
+    width: auto;
+}
+
+.rili .rltit>select {
+    margin-right: 10px;
+}
+
+.rili .rltit>a {
+    /*margin-left: 10px;*/
+    text-decoration: none;
+    color: #333;
+    padding: 2px 10px;
+    background: #f9f9f9;
+    border: 1px solid #d8d8d8;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.rili .rltit>a:hover {
+    border-color: #fb0;
+}
+
+.rili .rltit .rlgz {
+    float: right;
+    color: #B98628;
+}
+
+.rili_fu {
+    position: absolute;
+    display: none;
+    word-break: break-all;
+    width: 130px;
+    font-size: 12px;
+    background: #fb0;
+    z-index: 201;
+}
+
+.rili_fu .rlyang {
+    color: #fff;
+    /*text-align: right;*/
+    padding: 5px 0 0 6px;
+}
+
+.rili_fu .rlyang p {
+    line-height: 20px;
+}
+
+.rili_fu .rlfujie {
+    background: #d6ffd6;
+    margin: 5px;
+    color: #B98628;
+    line-height: 20px;
+    text-align: left;
+    padding: 6px;
+}
+
+.rili_fu .fu_month {
+    color: #ec65bb;
+}
+
+.rili_fu .fu_year {
+    color: #ffff33;
+}

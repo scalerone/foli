@@ -378,7 +378,7 @@ function monthDays(y, m) {
 
 
 //====================================== 算出农历, 传入日期控件, 返回农历日期控件
-//													该控件属性有 .year .month .day .isLeap
+//                                                  该控件属性有 .year .month .day .isLeap
 function Lunar(objDate) {
 
     var i, leap = 0,
@@ -483,8 +483,8 @@ function sTerm(y, n) {
 /*
 功能说明: 返回整个月的日期资料控件
 使用方式: OBJ = new calendar(年,零起算月);
-OBJ.length		返回当月最大日
-OBJ.firstWeek	返回当月一日星期
+OBJ.length      返回当月最大日
+OBJ.firstWeek   返回当月一日星期
 由 OBJ[日期].属性名称 即可取得各项值
 OBJ[日期].isToday  返回是否为今日 true 或 false
 其他 OBJ[日期] 属性参见 calElement() 中的注解*/
@@ -668,39 +668,42 @@ function drawCld(objid, SY, SM) {
     var cld0;
     if (SM > 0) cld0 = new calendar(SY, SM - 1);
     else cld0 = new calendar(SY - 1, 11);
-    //	if(SY>1874 && SY<1909) yDisplay = '光绪' + (((SY-1874)==1)?'元':SY-1874);
-    //	if(SY>1908 && SY<1912) yDisplay = '宣统' + (((SY-1908)==1)?'元':SY-1908);
-    //	if(SY>1911) yDisplay = '建国' + (((SY-1949)==1)?'元':SY-1949);
-    //	yDisplay = '佛历' + (SY+543) + "年　" + yDisplay;
-    //	RLShengxiao=Animals[(SY-4)%12];
-    //	$RL(objid+"_gz").innerHTML = yDisplay +'年 农历 ' + cyclical(SY-1900+36) + '年 【'+RLShengxiao+'年】';
+    //  if(SY>1874 && SY<1909) yDisplay = '光绪' + (((SY-1874)==1)?'元':SY-1874);
+    //  if(SY>1908 && SY<1912) yDisplay = '宣统' + (((SY-1908)==1)?'元':SY-1908);
+    //  if(SY>1911) yDisplay = '建国' + (((SY-1949)==1)?'元':SY-1949);
+    //  yDisplay = '佛历' + (SY+543) + "年　" + yDisplay;
+    //  RLShengxiao=Animals[(SY-4)%12];
+    //  $RL(objid+"_gz").innerHTML = yDisplay +'年 农历 ' + cyclical(SY-1900+36) + '年 【'+RLShengxiao+'年】';
     //YMBG.innerHTML = "&nbsp;" + SY + "年" + "<BR>&nbsp;" + monthName[SM];
-    //	for(i=0;i<cld.firstWeek;i++){
-    //		sObj=$RL(objid+"_sd"+i);
-    //		sD = cld0.length-cld.firstWeek+i;
-    //		sObj.innerHTML = sD+1;
-    //	}
+    //  for(i=0;i<cld.firstWeek;i++){
+    //      sObj=$RL(objid+"_sd"+i);
+    //      sD = cld0.length-cld.firstWeek+i;
+    //      sObj.innerHTML = sD+1;
+    //  }
     lYrChgInd = 0; //慧剛 - 用于更正公曆年初與陰曆年末重複所造成的陰曆年干支顯示錯誤。
-
+    var containerObj;
     for (i = 0; i < 42; i++) {
+        containerObj = $RL(objid + "_container" + i);
         sObj = $RL(objid + "_sd" + i);
         lObj = $RL(objid + "_ld" + i);
         sObj.className = 'rlri';
         sD = i - cld.firstWeek;
         if (sD > -1 && sD < cld.length) { //日期内
+            containerObj.className = 'daycontainer';
             sObj.innerHTML = sD + 1;
             if (RLChangesDay == sD + 1) {
                 RLChangesD = i; //默认显示上次日期
             }
             if (cld[sD].isToday) {
-                sObj.className = sObj.className + ' today'; //今日颜色
+                containerObj.className = 'daycontainer today';
+                // sObj.className = sObj.className + ' today'; //今日颜色
                 if (RLChangesD == 0) RLChangesD = i; //显示今日
             }
             //慧剛 - 用于更正公曆年初與陰曆年末重複所造成的陰曆年干支顯示錯誤。以公曆月中後一天所在陰曆日確定當月為新或舊陰曆年。
             if (cld[sD].sDay == 16 && cld[sD].sMonth == 1 && cld[sD].lMonth != 1) lYrChgInd = 1; //陰曆年初一在陽曆1月份
             else if (cld[sD].sDay == 15 && cld[sD].sMonth == 2 && cld[sD].lMonth > 10) lYrChgInd = 1; //陰曆年初一在陽曆2月份
 
-            //	sObj.style.color = cld[sD].color; //法定假日颜色
+            //  sObj.style.color = cld[sD].color; //法定假日颜色
             if (cld[sD].lDay == 1) //显示农历月
                 lObj.innerHTML = '<b>' + (cld[sD].isLeap ? '闰' : '') + cld[sD].lMonth + '月' + (monthDays(cld[sD].lYear, cld[sD].lMonth) == 29 ? '小' : '大') + '</b>';
             else //显示农历日
@@ -709,7 +712,7 @@ function drawCld(objid, SY, SM) {
             s = cld[sD].lunarFestival;
             if (s.length > 0) { //农历节日
                 // if (s.length > RLHANLEN) s = s.substr(0, RLHANLEN - 2) + '...';
-                s = s.fontcolor('red');
+                s = s.fontcolor('#B98628');
             } else { //公历节日
                 s = cld[sD].solarFestival;
                 if (s.length > 0) {
@@ -735,11 +738,12 @@ function drawCld(objid, SY, SM) {
             else if (cld[sD].sMonth == 10 && (cld[sD].sDay == 1 || cld[sD].sDay == 2 || cld[sD].sDay == 3)) cld[sD].faJia = true; //国庆
 
             if (cld[sD].faJia) sObj.className = sObj.className + " fajia"; //法定假日颜色
-            //	s=cld[sD].sMonth+":"+cld[sD].sDay;
+            //  s=cld[sD].sMonth+":"+cld[sD].sDay;
             if (s.length > 0) lObj.innerHTML = s;
         } else {
             sObj.innerHTML = '';
             lObj.innerHTML = '';
+            containerObj.className = '';
         } //非日期
     }
     //填充forceSolarTerms
@@ -774,7 +778,7 @@ function drawCld(objid, SY, SM) {
     if (SY > 1911 && SY < 1950) yDisplay = '民国' + (((SY - 1911) == 1) ? '元' : SY - 1911) //以陽曆記年
     if (SY > 1948) yDisplay = '建国' + (((SY - 1948) == 1) ? '元' : SY - 1948); //以陽曆記年
 
-    $RL(objid + "_gz").innerHTML = xDisplay.fontcolor('yellow') + '年 '.fontcolor('yellow') + yDisplay + '年 农历' + cyclical(SY - 1900 + 36 - lYrChgInd) + '年【' + Animals[((SY - 4) % 12 - lYrChgInd) != -1 ? ((SY - 4) % 12 - lYrChgInd) : 11] + '年】';
+    $RL(objid + "_gz").innerHTML = xDisplay + '年 ' + yDisplay + '年 农历' + cyclical(SY - 1900 + 36 - lYrChgInd) + '年【' + Animals[((SY - 4) % 12 - lYrChgInd) != -1 ? ((SY - 4) % 12 - lYrChgInd) : 11] + '年】';
 }
 
 
@@ -854,8 +858,10 @@ function mOvr(objid, v, isover) {
             }
         }
         s = '<div class="rltext">' +
-            '<div class="rlri">' + cld[d].sDay + '</div>' +
+
             '<div class="rlyang">' + cld[d].sYear + '<span>年</span>' + cld[d].sMonth + '<span>月</span>' + cld[d].sDay + '<span>日</span>　<span>星期</span>' + cld[d].week + '</div>' +
+            '<div class="rlri">' + cld[d].sDay + '</div>' +
+
             '<div class="rlnong"><strong>农历：</strong>' + (cld[d].isLeap ? '闰' : '') + nStr3[cld[d].lMonth - 1] + '<span>月</span>' + cDay(cld[d].lDay) + '</div>' +
             '<div color="rlzhu_y">' + cld[d].cYear + '(' + sxAnimals + ')<span>年</span> ' + cld[d].cMonth + '<span>月</span> ' + cld[d].cDay + '<span>日</span></div>';
 
@@ -865,65 +871,98 @@ function mOvr(objid, v, isover) {
         if (cld[d].lunarFestival != '') s += '<div color="rljieri"><strong>农历节：</strong>' + cld[d].lunarFestival + '</div>';
         if (cld[d].solarFestival != '') s += '<div color="rljieri"><strong>公历节：</strong>' + cld[d].solarFestival + '</div>';
         s += '</div>';
-
-
-        sfu = '<div style="background:#784b20">' +
-            '<div class="rlyang">' + cld[d].sYear + ' 年 ' + cld[d].sMonth + ' 月 ' + cld[d].sDay + ' 日<br>星期' + cld[d].week + '<br>' +
-            '<font color="#ec65bb">农历' + (cld[d].isLeap ? '闰 ' : ' ') + cld[d].lMonth + ' 月 ' + cld[d].lDay + ' 日</font><br>' +
-            '<font color="#ffff33">' + cld[d].cYear + '年 ' + cld[d].cMonth + '月 ' + cld[d].cDay + '日</font>' +
-            '</font></div><div class="rlfujie">' + cld[d].solarTerms + ' ' + cld[d].solarFestival + ' ' + cld[d].lunarFestival + '</div>' + '</div>';
-
-
-
-        var divobjleft = sObj.getBoundingClientRect().left + sObj.offsetWidth + 1;
-        var divobjtop = sObj.getBoundingClientRect().top + sObj.offsetHeight + 1;
-
-        $(sObj).mouseout(function() {
-            $("#" + objid + "_info").hide();
-        });
-        $("#" + objid + "_bdy").mouseout(function() {
-            $("#" + objid + "_info").hide();
-        });
-
-        //	$("#"+objid+"_info").stop();
-        if (isover) {
-            $RL(objid + "_info").innerHTML = sfu;
-            $("#" + objid + "_info").css({
-                top: divobjtop + "px",
-                left: divobjleft + "px"
-            })
-            $("#" + objid + "_info").show("fast").fadeTo("fast", 0.95);
-        } else {
-            $("#" + objid + "_info").hide("fast");
-        }
-
         $RL(objid + "_show").innerHTML = s;
         for (i = 0; i < 42; i++) {
-            so = $RL(objid + "_sd" + i);
-            so.className = so.className.replace(' this', '');
+            so = $RL(objid + "_container" + i);
+            so.className = so.className.replace(' active', '');
         }
-        sObj.className = sObj.className + ' this';
+        $RL(objid + "_container" + v).className = $RL(objid + "_container" + v).className + ' active';
+
+        // sfu = '<div style="background:#784b20">' +
+        //     '<div class="rlyang">' + cld[d].sYear + ' 年 ' + cld[d].sMonth + ' 月 ' + cld[d].sDay + ' 日<br>星期' + cld[d].week + '<br>' +
+        //     '<font color="#ec65bb">农历' + (cld[d].isLeap ? '闰 ' : ' ') + cld[d].lMonth + ' 月 ' + cld[d].lDay + ' 日</font><br>' +
+        //     '<font color="#ffff33">' + cld[d].cYear + '年 ' + cld[d].cMonth + '月 ' + cld[d].cDay + '日</font>' +
+        //     '</font></div><div class="rlfujie">' + cld[d].solarTerms + ' ' + cld[d].solarFestival + ' ' + cld[d].lunarFestival + '</div>' + '</div>';
+
+
+
+        // var divobjleft = sObj.getBoundingClientRect().left + sObj.offsetWidth + 1;
+        // var divobjtop = sObj.getBoundingClientRect().top + sObj.offsetHeight + 1;
+
+        // $(sObj).mouseout(function() {
+        //     // $("#" + objid + "_info").hide();
+        // });
+        // $("#" + objid + "_bdy").mouseout(function() {
+        //     // $("#" + objid + "_info").hide();
+        // });
+
+        // //  $("#"+objid+"_info").stop();
+        // if (isover) {
+        //     $RL(objid + "_info").innerHTML = sfu;
+        //     $("#" + objid + "_info").css({
+        //         top: divobjtop + "px",
+        //         left: divobjleft + "px"
+        //     })
+        //     $("#" + objid + "_info").show("fast").fadeTo("fast", 0.95);
+        // } else {
+        //     $("#" + objid + "_info").hide("fast");
+        // }
+        var $riliInfo = $('#rili_info'),
+            $riliInfo_date = $('.fu_date', $riliInfo),
+            $riliInfo_week = $('.fu_week', $riliInfo),
+            $riliInfo_month = $('.fu_month', $riliInfo),
+            $riliInfo_year = $('.fu_year', $riliInfo),
+            $riliInfo_rlfujie = $('.rlfujie', $riliInfo);
+        $riliInfo_date.html(cld[d].sYear + '<span>年</span>' + cld[d].sMonth + '<span>月</span>' + cld[d].sDay + '<span>日</span>');
+        $riliInfo_week.html('星期' + cld[d].week);
+        $riliInfo_month.html('农历' + (cld[d].isLeap ? '闰 ' : ' ') + cld[d].lMonth + ' 月 ' + cld[d].lDay + ' 日');
+        $riliInfo_year.html(cld[d].cYear + '年 ' + cld[d].cMonth + '月 ' + cld[d].cDay + '日');
+        $riliInfo_rlfujie.html(cld[d].solarTerms + ' ' + cld[d].solarFestival + ' ' + cld[d].lunarFestival);
+        if (isover) {
+            var $dom = $('#' + objid + "_gd" + v),
+                offset = $dom.offset(), //获取相对于document的偏移量 
+                w = $dom.width(), //获取宽（content+padding+border），若指定参数true，则包括margin
+                h = $dom.height(),
+                top = offset.top + 1,
+                left = offset.left + w;
+            var rw = $riliInfo.show().width(),
+                rh = $riliInfo.height();
+            $riliInfo.hide();
+            if (rh + top > $(document).height()) {
+                top = top - rh + h;
+            }
+            if (rw + left > $(document).width()) {
+                left = left - rw - w;
+            }
+            $riliInfo.css({
+                top: top,
+                left: left
+            }).show();
+        }
+        $('table td').one('mouseleave', function() {
+            $riliInfo.hide();
+        });
     }
 }
 
 function LoadRili(objid) {
     var gNum, i, j, rt;
     //<div id='"+objid+"_tit' class='rltit'>
-    rt = "公历：<select onchange='changeCld(\"" + objid + "\")' id='" + objid + "_sy'>";
+    rt = "<select onchange='changeCld(\"" + objid + "\")' id='" + objid + "_sy'>";
     for (i = 1900; i < 2050; i++) rt += "<option>" + i + "</option>";
-    rt += "</select><a href='javascript:void(0);' title='上一年' onclick=\"pushBtm('" + objid + "','YU')\">↑</a><a href='javascript:void(0);' title='下一年' onclick=\"pushBtm('" + objid + "','YD')\">↓</a>年<select onchange='changeCld(\"" + objid + "\")' id='" + objid + "_sm'>";
+    rt += "</select><select onchange='changeCld(\"" + objid + "\")' id='" + objid + "_sm'>";
     for (i = 1; i < 13; i++) rt += "<option>" + i + "</option>";
-    rt += "</select><a href='javascript:void(0);' title='上一月' onclick=\"pushBtm('" + objid + "','MU')\">↑</a><a href='javascript:void(0);' title='下一月' onclick=\"pushBtm('" + objid + "','MD')\">↓</a><a href='javascript:void(0);' onclick=\"pushBtm('" + objid + "','')\">今天</a><span id='" + objid + "_gz' class='rlgz'></span>";
+    rt += "</select><a href='javascript:void(0);' onclick=\"pushBtm('" + objid + "','')\">今天</a><span id='" + objid + "_gz' class='rlgz'></span>";
     $RL(objid + "_tit").innerHTML = rt;
     //<div id='"+objid+"_bdy' class='rlbdy'>
     rt = "<table cellspacing=\"0\" cellpadding=\"0\">";
     rt += "<thead><tr><th style='color:red'><div>日</div></th><th><div>一</div></th><th><div>二</div></th><th><div>三</div></th><th><div>四</div></th><th><div>五</div></th><th style='color:green'><div>六</div></th></tr></thead>";
-    rt += "<tbody><tr><td colspan='7' style='height:10px;'><div style='height:10px;'></div></td></tr>";
+    rt += "<tbody>";
     for (i = 0; i < 6; i++) {
         rt += '<tr>';
         for (j = 0; j < 7; j++) {
             gNum = i * 7 + j;
-            rt += "<td id='" + objid + "_gd" + gNum + "' onmouseover='mOvr(\"" + objid + "\"," + gNum + ",true)'><div class='calendar-relative'><a href='javascript:void(0)'><span class='rlri' id='" + objid + "_sd" + gNum + "'";
+            rt += "<td id='" + objid + "_gd" + gNum + "' onmouseover='mOvr(\"" + objid + "\"," + gNum + ",true)'><div class='foli-relative'><a id='" + objid + "_container" + gNum + "' href='javascript:void(0)'><span class='rlri' id='" + objid + "_sd" + gNum + "'";
             if (j == 0) rt += " style='color:red;'";
             else if (j == 6) rt += (i % 2 == 1) ? " style='color:red'" : " style='color:green'";
             rt += " title=''></span><span id='" + objid + "_ld" + gNum + "' class='rlinfo'></span></a></div></td>";
@@ -931,7 +970,7 @@ function LoadRili(objid) {
         rt += '</tr>';
     }
     rt += "</tbody></table>";
-    $RL(objid + "_bdy").innerHTML = rt + "<div id=\"" + objid + "_info\" class=\"rili_fu\"></div>";
+    $RL(objid + "_bdy").innerHTML = rt;
 
     $RL(objid + "_sy").selectedIndex = tY - 1900;
     $RL(objid + "_sm").selectedIndex = tM;
